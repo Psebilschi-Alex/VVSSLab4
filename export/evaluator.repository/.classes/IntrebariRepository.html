@@ -1,0 +1,225 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: IntrebariRepository</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">evaluator.repository</a> ]
+</div>
+
+<h1>Coverage Summary for Class: IntrebariRepository (evaluator.repository)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">IntrebariRepository</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (9/ 12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    55.3%
+  </span>
+  <span class="absValue">
+    (42/ 76)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package evaluator.repository;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.io.*;
+<i>4</i>&nbsp;import java.util.*;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import evaluator.exception.InputValidationFailedException;
+<i>8</i>&nbsp;import evaluator.model.Intrebare;
+<i>9</i>&nbsp;import evaluator.exception.DuplicateIntrebareException;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;public class IntrebariRepository {
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;	private List&lt;Intrebare&gt; intrebari;
+<i>14</i>&nbsp;	private String filename;
+<i>15</i>&nbsp;
+<b class="fc"><i>16</i>&nbsp;	public IntrebariRepository(String file) {</b>
+<b class="fc"><i>17</i>&nbsp;		filename = file;</b>
+<b class="fc"><i>18</i>&nbsp;		intrebari = this.loadIntrebariFromFile();</b>
+<b class="fc"><i>19</i>&nbsp;	}</b>
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;	public boolean addIntrebare(String enunt, String var1, String var2, String var3, int corect, String domeniu) throws DuplicateIntrebareException, InputValidationFailedException, InputValidationFailedException {
+<b class="fc"><i>22</i>&nbsp;		Intrebare i = new Intrebare(enunt, var1, var2, var3, corect, domeniu);</b>
+<b class="fc"><i>23</i>&nbsp;		if (exists(i))</b>
+<b class="nc"><i>24</i>&nbsp;			throw new DuplicateIntrebareException(&quot;Intrebarea deja exista!&quot;);</b>
+<b class="fc"><i>25</i>&nbsp;		intrebari.add(i);</b>
+<b class="fc"><i>26</i>&nbsp;		saveIntrebariToFile();</b>
+<b class="fc"><i>27</i>&nbsp;		return true;</b>
+<i>28</i>&nbsp;	}
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;	private boolean exists(Intrebare i) {
+<b class="fc"><i>31</i>&nbsp;		for (Intrebare intrebare : intrebari)</b>
+<b class="fc"><i>32</i>&nbsp;			if (intrebare.equals(i))</b>
+<b class="nc"><i>33</i>&nbsp;				return true;</b>
+<b class="fc"><i>34</i>&nbsp;		return false;</b>
+<i>35</i>&nbsp;	}
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;	public Intrebare pickRandomIntrebare() {
+<b class="fc"><i>38</i>&nbsp;		Random random = new Random();</b>
+<b class="fc"><i>39</i>&nbsp;		return intrebari.get(random.nextInt(intrebari.size()));</b>
+<i>40</i>&nbsp;	}
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;	public int getNumberOfDistinctDomains() {
+<b class="fc"><i>43</i>&nbsp;		return getDistinctDomains().size();</b>
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;	}
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;	public Set&lt;String&gt; getDistinctDomains() {
+<b class="fc"><i>48</i>&nbsp;		Set&lt;String&gt; domains = new TreeSet&lt;String&gt;();</b>
+<b class="fc"><i>49</i>&nbsp;		for (Intrebare intrebre : intrebari)</b>
+<b class="fc"><i>50</i>&nbsp;			domains.add(intrebre.getDomeniu());</b>
+<b class="fc"><i>51</i>&nbsp;		return domains;</b>
+<i>52</i>&nbsp;	}
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;	public List&lt;Intrebare&gt; getIntrebariByDomain(String domain) {
+<b class="nc"><i>55</i>&nbsp;		List&lt;Intrebare&gt; intrebariByDomain = new LinkedList&lt;Intrebare&gt;();</b>
+<b class="nc"><i>56</i>&nbsp;		for (Intrebare intrebare : intrebari) {</b>
+<b class="nc"><i>57</i>&nbsp;			if (intrebare.getDomeniu().equals(domain)) {</b>
+<b class="nc"><i>58</i>&nbsp;				intrebariByDomain.add(intrebare);</b>
+<i>59</i>&nbsp;			}
+<b class="nc"><i>60</i>&nbsp;		}</b>
+<i>61</i>&nbsp;
+<b class="nc"><i>62</i>&nbsp;		return intrebariByDomain;</b>
+<i>63</i>&nbsp;	}
+<i>64</i>&nbsp;
+<i>65</i>&nbsp;	public int getNumberOfIntrebariByDomain(String domain) {
+<b class="nc"><i>66</i>&nbsp;		return getIntrebariByDomain(domain).size();</b>
+<i>67</i>&nbsp;	}
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;	private List&lt;Intrebare&gt; loadIntrebariFromFile() {
+<b class="fc"><i>70</i>&nbsp;		File file = new File(filename);</b>
+<i>71</i>&nbsp;		try {
+<b class="fc"><i>72</i>&nbsp;			file.createNewFile();</b>
+<b class="nc"><i>73</i>&nbsp;		} catch (IOException e) {</b>
+<b class="nc"><i>74</i>&nbsp;			e.printStackTrace();</b>
+<b class="fc"><i>75</i>&nbsp;		}</b>
+<b class="fc"><i>76</i>&nbsp;		List&lt;Intrebare&gt; intrebari = new LinkedList&lt;Intrebare&gt;();</b>
+<b class="fc"><i>77</i>&nbsp;		BufferedReader br = null;</b>
+<b class="fc"><i>78</i>&nbsp;		String line = null;</b>
+<i>79</i>&nbsp;		List&lt;String&gt; intrebareAux;
+<i>80</i>&nbsp;		Intrebare intrebare;
+<i>81</i>&nbsp;
+<i>82</i>&nbsp;		try {
+<b class="fc"><i>83</i>&nbsp;			br = new BufferedReader(new FileReader(filename));</b>
+<b class="fc"><i>84</i>&nbsp;			while ((line=br.readLine())!=null) {</b>
+<b class="nc"><i>85</i>&nbsp;				intrebareAux= Arrays.asList(line.split(&quot;,&quot;));</b>
+<i>86</i>&nbsp;
+<b class="nc"><i>87</i>&nbsp;				intrebare = new Intrebare();</b>
+<b class="nc"><i>88</i>&nbsp;				intrebare.setEnunt(intrebareAux.get(0));</b>
+<b class="nc"><i>89</i>&nbsp;				intrebare.setVarianta1(intrebareAux.get(1));</b>
+<b class="nc"><i>90</i>&nbsp;				intrebare.setVarianta2(intrebareAux.get(2));</b>
+<b class="nc"><i>91</i>&nbsp;				intrebare.setVarianta3(intrebareAux.get(3));</b>
+<b class="nc"><i>92</i>&nbsp;				intrebare.setVariantaCorecta(Integer.parseInt(intrebareAux.get(4)));</b>
+<b class="nc"><i>93</i>&nbsp;				intrebare.setDomeniu(intrebareAux.get(5));</b>
+<b class="nc"><i>94</i>&nbsp;				intrebari.add(intrebare);</b>
+<i>95</i>&nbsp;
+<i>96</i>&nbsp;			}
+<i>97</i>&nbsp;
+<b class="nc"><i>98</i>&nbsp;		} catch (IOException e) {</b>
+<b class="nc"><i>99</i>&nbsp;			System.out.println(&quot;can`t read from file!&quot;);</b>
+<i>100</i>&nbsp;		} finally {
+<b class="nc"><i>101</i>&nbsp;			try {</b>
+<b class="fc"><i>102</i>&nbsp;				if (br != null) {</b>
+<b class="fc"><i>103</i>&nbsp;					br.close();</b>
+<i>104</i>&nbsp;				}
+<b class="nc"><i>105</i>&nbsp;			} catch (IOException e) {</b>
+<b class="nc"><i>106</i>&nbsp;				System.out.println(&quot;can`t close file!&quot;);</b>
+<b class="fc"><i>107</i>&nbsp;			}</b>
+<b class="nc"><i>108</i>&nbsp;		}</b>
+<i>109</i>&nbsp;
+<b class="fc"><i>110</i>&nbsp;		return intrebari;</b>
+<i>111</i>&nbsp;	}
+<i>112</i>&nbsp;
+<i>113</i>&nbsp;	private void saveIntrebariToFile() {
+<b class="fc"><i>114</i>&nbsp;		BufferedWriter bw = null;</b>
+<i>115</i>&nbsp;		try {
+<b class="fc"><i>116</i>&nbsp;			bw = new BufferedWriter(new FileWriter(filename));</b>
+<b class="fc"><i>117</i>&nbsp;			for (Intrebare intrebare : intrebari) {</b>
+<b class="fc"><i>118</i>&nbsp;				bw.write(intrebare.toString());</b>
+<b class="fc"><i>119</i>&nbsp;				bw.newLine();</b>
+<b class="fc"><i>120</i>&nbsp;			}</b>
+<b class="nc"><i>121</i>&nbsp;		} catch (IOException e) {</b>
+<b class="nc"><i>122</i>&nbsp;			System.out.println(&quot;can`t write to file!&quot;);</b>
+<i>123</i>&nbsp;		} finally {
+<b class="nc"><i>124</i>&nbsp;			try {</b>
+<b class="fc"><i>125</i>&nbsp;				if (bw != null) {</b>
+<b class="fc"><i>126</i>&nbsp;					bw.close();</b>
+<i>127</i>&nbsp;				}
+<b class="nc"><i>128</i>&nbsp;			} catch (IOException e) {</b>
+<b class="nc"><i>129</i>&nbsp;				System.out.println(&quot;can`t close file!&quot;);</b>
+<b class="fc"><i>130</i>&nbsp;			}</b>
+<b class="nc"><i>131</i>&nbsp;		}</b>
+<b class="fc"><i>132</i>&nbsp;	}</b>
+<i>133</i>&nbsp;
+<i>134</i>&nbsp;	public List&lt;Intrebare&gt; getIntrebari() {
+<b class="fc"><i>135</i>&nbsp;		return intrebari;</b>
+<i>136</i>&nbsp;	}
+<i>137</i>&nbsp;
+<i>138</i>&nbsp;	public void setIntrebari(List&lt;Intrebare&gt; intrebari) {
+<b class="nc"><i>139</i>&nbsp;		this.intrebari = intrebari;</b>
+<b class="nc"><i>140</i>&nbsp;	}</b>
+<i>141</i>&nbsp;
+<i>142</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2018-05-09 18:46</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,187 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Intrebare</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">evaluator.model</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Intrebare (evaluator.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Intrebare</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    56.2%
+  </span>
+  <span class="absValue">
+    (9/ 16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    68.9%
+  </span>
+  <span class="absValue">
+    (31/ 45)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package evaluator.model;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import evaluator.util.InputValidation;
+<i>4</i>&nbsp;import evaluator.exception.InputValidationFailedException;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;public class Intrebare {
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;	private String enunt;
+<i>9</i>&nbsp;	private String varianta1;
+<i>10</i>&nbsp;	private String varianta2;
+<i>11</i>&nbsp;	private String varianta3;
+<i>12</i>&nbsp;	private Integer variantaCorecta;
+<i>13</i>&nbsp;	private String domeniu;
+<i>14</i>&nbsp;
+<b class="nc"><i>15</i>&nbsp;	public Intrebare() {</b>
+<b class="nc"><i>16</i>&nbsp;	}</b>
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;	public Intrebare(String enunt, String varianta1, String varianta2, String varianta3,
+<b class="fc"><i>19</i>&nbsp;					 Integer variantaCorecta, String domeniu) throws InputValidationFailedException {</b>
+<i>20</i>&nbsp;
+<b class="fc"><i>21</i>&nbsp;		InputValidation.validateEnunt(enunt);</b>
+<b class="fc"><i>22</i>&nbsp;		InputValidation.validateVarianta1(varianta1);</b>
+<b class="fc"><i>23</i>&nbsp;		InputValidation.validateVarianta2(varianta2);</b>
+<b class="fc"><i>24</i>&nbsp;		InputValidation.validateVarianta3(varianta3);</b>
+<b class="fc"><i>25</i>&nbsp;		InputValidation.validateVariantaCorecta(variantaCorecta);</b>
+<b class="fc"><i>26</i>&nbsp;		InputValidation.validateDomeniu(domeniu);</b>
+<i>27</i>&nbsp;
+<b class="fc"><i>28</i>&nbsp;		this.enunt = enunt;</b>
+<b class="fc"><i>29</i>&nbsp;		this.varianta1 = varianta1;</b>
+<b class="fc"><i>30</i>&nbsp;		this.varianta2 = varianta2;</b>
+<b class="fc"><i>31</i>&nbsp;		this.varianta3 = varianta3;</b>
+<b class="fc"><i>32</i>&nbsp;		this.variantaCorecta = variantaCorecta;</b>
+<b class="fc"><i>33</i>&nbsp;		this.domeniu = domeniu;</b>
+<b class="fc"><i>34</i>&nbsp;	}</b>
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;	public String getVarianta3() {
+<b class="fc"><i>37</i>&nbsp;		return varianta3;</b>
+<i>38</i>&nbsp;	}
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;	public void setVarianta3(String varianta3) {
+<b class="nc"><i>41</i>&nbsp;		this.varianta3 = varianta3;</b>
+<b class="nc"><i>42</i>&nbsp;	}</b>
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;	@Override
+<i>45</i>&nbsp;	public String toString() {
+<b class="fc"><i>46</i>&nbsp;		return enunt + &quot;,&quot; + varianta1 + &quot;,&quot; + varianta2 + &quot;,&quot; + varianta3 + &quot;,&quot; + variantaCorecta + &quot;,&quot; + domeniu;</b>
+<i>47</i>&nbsp;	}
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;	public String getEnunt() {
+<b class="fc"><i>50</i>&nbsp;		return enunt;</b>
+<i>51</i>&nbsp;	}
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;	public void setEnunt(String enunt) {
+<b class="nc"><i>54</i>&nbsp;		this.enunt = enunt;</b>
+<b class="nc"><i>55</i>&nbsp;	}</b>
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;	public String getVarianta1() {
+<b class="fc"><i>58</i>&nbsp;		return varianta1;</b>
+<i>59</i>&nbsp;	}
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;	public void setVarianta1(String varianta1) {
+<b class="nc"><i>62</i>&nbsp;		this.varianta1 = varianta1;</b>
+<b class="nc"><i>63</i>&nbsp;	}</b>
+<i>64</i>&nbsp;
+<i>65</i>&nbsp;	public String getVarianta2() {
+<b class="fc"><i>66</i>&nbsp;		return varianta2;</b>
+<i>67</i>&nbsp;	}
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;	public void setVarianta2(String varianta2) {
+<b class="nc"><i>70</i>&nbsp;		this.varianta2 = varianta2;</b>
+<b class="nc"><i>71</i>&nbsp;	}</b>
+<i>72</i>&nbsp;
+<i>73</i>&nbsp;	public Integer getVariantaCorecta() {
+<b class="fc"><i>74</i>&nbsp;		return variantaCorecta;</b>
+<i>75</i>&nbsp;	}
+<i>76</i>&nbsp;
+<i>77</i>&nbsp;	public void setVariantaCorecta(Integer variantaCorecta) {
+<b class="nc"><i>78</i>&nbsp;		this.variantaCorecta = variantaCorecta;</b>
+<b class="nc"><i>79</i>&nbsp;	}</b>
+<i>80</i>&nbsp;
+<i>81</i>&nbsp;	public String getDomeniu() {
+<b class="fc"><i>82</i>&nbsp;		return domeniu;</b>
+<i>83</i>&nbsp;	}
+<i>84</i>&nbsp;
+<i>85</i>&nbsp;	public void setDomeniu(String domeniu) {
+<b class="nc"><i>86</i>&nbsp;		this.domeniu = domeniu;</b>
+<b class="nc"><i>87</i>&nbsp;	}</b>
+<i>88</i>&nbsp;
+<i>89</i>&nbsp;	@Override
+<i>90</i>&nbsp;	public boolean equals(Object obj) {
+<b class="fc"><i>91</i>&nbsp;		if (obj instanceof Intrebare) {</b>
+<b class="fc"><i>92</i>&nbsp;			Intrebare i = (Intrebare) obj;</b>
+<b class="fc"><i>93</i>&nbsp;			if (this.enunt.equals(i.getEnunt()) &amp;&amp;</b>
+<b class="fc"><i>94</i>&nbsp;					this.varianta1.equals(i.getVarianta1()) &amp;&amp;</b>
+<b class="fc"><i>95</i>&nbsp;					this.varianta2.equals(i.getVarianta2()) &amp;&amp;</b>
+<b class="fc"><i>96</i>&nbsp;					this.varianta3.equals(i.getVarianta3()) &amp;&amp;</b>
+<b class="fc"><i>97</i>&nbsp;					this.variantaCorecta.equals(i.getVariantaCorecta()) &amp;&amp;</b>
+<b class="fc"><i>98</i>&nbsp;					this.domeniu.equals(i.getDomeniu()))</b>
+<b class="fc"><i>99</i>&nbsp;				return true;</b>
+<i>100</i>&nbsp;		}
+<b class="fc"><i>101</i>&nbsp;		return false;</b>
+<i>102</i>&nbsp;	}
+<i>103</i>&nbsp;
+<i>104</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2018-05-09 18:46</div>
+</div>
+</body>
+</html>

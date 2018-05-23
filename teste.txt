@@ -1,0 +1,8 @@
+enunt,varianta1,varianta2,varianta3,2,domeniu1
+enunt1,varianta1,varianta2,varianta3,2,domeniu1
+enunt2,varianta1,varianta2,varianta3,2,domeniul1
+enunt3,varianta1,varianta2,varianta3,2,domeniul1
+enunt4,varianta1,varianta2,varianta3,2,domeniul2
+enunt5,varianta1,varianta2,varianta3,2,domeniul3
+enunt6,varianta1,varianta2,varianta3,2,domeniul4
+enunt7,varianta1,varianta2,varianta3,2,domeniul4
